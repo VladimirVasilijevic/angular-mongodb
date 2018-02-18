@@ -1,0 +1,49 @@
+<div>
+  <ul class="players">
+    <li *ngFor="let player of players" (click)="onSelect(player)" [class.selected]="player === selectedPlayer">
+      <div class="player-element">
+        <div>{{player.id}}</div>
+        <div class="name">{{player.name}}</div>
+      </div>
+    </li>
+  </ul>
+  <div class="editarea">
+    <button (click)="enableAddMode()">Add New Player</button>
+    <div *ngIf="selectedPlayer">
+        <div>
+          <label>id: </label>
+          <input [(ngModel)]="selectedPlayer.id" placeholder="id" *ngIf="addingPlayer" />
+          <label *ngIf="!addingPlayer" class="value">{{selectedPlayer.id}}</label>
+        </div>
+        <div>
+          <label>name: </label>
+          <input [(ngModel)]="selectedPlayer.name" *ngIf="edit" placeholder="name" />
+          <label *ngIf="!edit" class="value">{{selectedPlayer.name}}</label>
+        </div>
+        <div>
+          <label>display_name: </label>
+          <input [(ngModel)]="selectedPlayer.display_name" *ngIf="edit" placeholder="display_name" />
+          <label *ngIf="!edit" class="value">{{selectedPlayer.display_name}}</label>
+        </div>
+        <div>
+          <label>first_name: </label>
+          <input [(ngModel)]="selectedPlayer.first_name" *ngIf="edit" placeholder="first_name" />
+          <label *ngIf="!edit" class="value">{{selectedPlayer.first_name}}</label>
+        </div>
+        <div>
+          <label>last_name: </label>
+          <input [(ngModel)]="selectedPlayer.last_name" *ngIf="edit" placeholder="last_name" />
+          <label *ngIf="!edit" class="value">{{selectedPlayer.last_name}}</label>
+        </div>
+        <div>
+          <label>image: </label>
+          <input [(ngModel)]="selectedPlayer.image" *ngIf="edit" placeholder="image" />
+          <label *ngIf="!edit" class="value">{{selectedPlayer.image}}</label>
+        </div>
+      <button (click)="cancel()">Cancel</button>
+      <button (click)="save()">Save</button>
+      <button (click)="deletePlayer(selectedPlayer)">Delete</button>
+      <button (click)="editPlayer()">Edit</button>
+    </div>
+  </div>
+</div>
